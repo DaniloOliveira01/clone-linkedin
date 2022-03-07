@@ -1,5 +1,19 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // Styles
-import { Container, Content, Logo, Nav, NavList, NavListWrapper, Search, SearchIcon } from "./styles";
+import { 
+  Container, 
+  Content, 
+  Logo, 
+  Nav, 
+  NavList, 
+  NavListWrapper, 
+  Search, 
+  SearchIcon, 
+  SignOut, 
+  User,
+  Work
+} from "./styles";
 
 // Images
 import HomeLogo from '../../assets/images/home-logo.svg'
@@ -9,6 +23,9 @@ import NavNetwork from '../../assets/images/nav-network.svg'
 import NavJobs from '../../assets/images/nav-jobs.svg'
 import NavMensages from '../../assets/images/nav-messaging.svg'
 import NavNotification from '../../assets/images/nav-notifications.svg'
+import UserSvg from '../../assets/images/user.svg'
+import DownSvg from '../../assets/images/down-icon.svg'
+import NavWork from '../../assets/images/nav-work.svg'
 
 
 
@@ -18,7 +35,9 @@ export function Header() {
       <Content>
         <Logo>
           <a href="/home">
-            <img src={HomeLogo} alt="" />  
+            <img 
+            src={HomeLogo} 
+            />  
           </a>
         </Logo>
 
@@ -32,7 +51,7 @@ export function Header() {
           <SearchIcon>
             <img 
             src={SearchSvg} 
-            alt="" />
+            />
           </SearchIcon>
         </Search>
 
@@ -42,7 +61,6 @@ export function Header() {
               <a href="/home">
                 <img 
                 src={NavHome} 
-                alt="" 
                 />
                 <span>
                   Início
@@ -54,7 +72,6 @@ export function Header() {
               <a href="/home">
                 <img 
                 src={NavNetwork} 
-                alt="" 
                 />
                 <span>
                   Minha rede
@@ -65,8 +82,7 @@ export function Header() {
             <NavList>
               <a href="/home">
                 <img 
-                src={NavJobs} 
-                alt="" 
+                src={NavJobs}
                 />
                 <span>
                   Vagas
@@ -78,7 +94,6 @@ export function Header() {
               <a href="/home">
                 <img 
                 src={NavMensages} 
-                alt="" 
                 />
                 <span>
                   Mensagens
@@ -89,17 +104,51 @@ export function Header() {
             <NavList>
               <a href="/home">
                 <img 
-                src={NavNotification} 
-                alt="" 
+                src={NavNotification}
                 />
                 <span>
                   Notificações
                 </span>
               </a>
             </NavList>
+
+            <User>
+              <a>
+                <img 
+                src={UserSvg} 
+                />
+                <span>
+                  Eu
+                  <img 
+                src={DownSvg}  
+                />
+                </span>
+              </a>
+
+              <SignOut>
+                <a>
+                  Sair
+                </a>
+              </SignOut>
+            </User>
+
+            <Work>
+              <a>
+                <img 
+                src={NavWork} 
+                />
+                <span>
+                  Soluções
+                  <img 
+                  src={DownSvg} 
+                  />
+                </span>
+              </a>
+            </Work>
+
           </NavListWrapper>
         </Nav>
       </Content>
     </Container>
-  )
+  );
 }
