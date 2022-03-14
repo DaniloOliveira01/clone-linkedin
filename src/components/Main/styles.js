@@ -161,6 +161,47 @@ export const ShareActor = styled.div`
     background: transparent;
     border: none;
     outline: none;
-    
+  }
+`;
+
+export const Description = styled.div`
+  padding: 0 16px;
+  overflow: hidden;
+  color: rgba(0,0,0,0.9);
+  font-size: 14px;
+  text-align: left;
+`;
+
+export const ShareImg = styled.div`
+  margin-top: 8px;
+  width: 100%;
+  display: block;
+  position: relative;
+  background-color: #f9fafb;
+
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const SocialCounts = styled.ul`
+  line-height: 1.3;
+  display: flex;
+  align-items: flex-start;
+  overflow: auto;
+  margin: 0 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9e5df;
+  list-style: none;
+
+  li {
+    margin-right: 5px;
+    font-size: 12px;
+
+    button {
+      display: flex;
+    }
   }
 `;
