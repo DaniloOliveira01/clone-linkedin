@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Article, Container, Description, ShareActor, ShareBox, ShareImg, SocialCounts } from "./styles";
+import { Article, Container, Description, ShareActor, ShareBox, ShareImg, SocialActions, SocialCounts } from "./styles";
 
 import UserSvg from '../../assets/images/user.svg'
 import Image from '../../assets/images/image.jpg'
@@ -10,6 +10,11 @@ import { FaCalendar } from 'react-icons/fa'
 import { FaNewspaper } from 'react-icons/fa'
 import { FaEllipsisH } from 'react-icons/fa'
 import { FaThumbsUp } from 'react-icons/fa'
+import { FaComment } from 'react-icons/fa'
+import { FaShare } from 'react-icons/fa'
+import { FaPaperPlane } from 'react-icons/fa'
+
+
 
 export function Main() {
   return (
@@ -97,16 +102,33 @@ export function Main() {
           </li>
 
           <li>
-            <a>
+            <span>
               3 comentários
-            </a>
+            </span>
           </li>
         </SocialCounts>
+        
+        <SocialActions>
+          <button>
+            <FaThumbsUp />
+            <span>Gostar</span>
+          </button>
 
-        <button>
-          <FaThumbsUp style={{ color: '#0000FF'}}/>
-          <span>Curtir</span>
-        </button>
+          <button>
+            <FaComment />
+            <span>Comentar</span>
+          </button>
+
+          <button>
+            <FaShare />
+            <span>Compartilhar</span>
+          </button>
+
+          <button>
+            <FaPaperPlane />
+            <span>Enviar</span>
+          </button>
+        </SocialActions>
       </Article>
     </div>
   </Container>

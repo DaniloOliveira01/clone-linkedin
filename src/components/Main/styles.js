@@ -189,19 +189,53 @@ export const ShareImg = styled.div`
 export const SocialCounts = styled.ul`
   line-height: 1.3;
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
   overflow: auto;
   margin: 0 16px;
   padding: 8px 0;
   border-bottom: 1px solid #e9e5df;
   list-style: none;
+  color: #808080;
 
   li {
     margin-right: 5px;
-    font-size: 12px;
+    font-size: 10px;
 
     button {
+      background: transparent;
+      border: none;
       display: flex;
+      color: #808080;
+    }
+  }
+`;
+
+export const SocialActions = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+  min-height: 40px;
+  padding: 4px 8px;
+
+  button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    color: #696969;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0,0,0,0.09);
+    }
+
+    @media (min-width: 768px) {
+      span {
+        margin-left: 8px;
+      }
     }
   }
 `;

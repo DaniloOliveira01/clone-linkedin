@@ -6,8 +6,10 @@ import LoginLogo from '../../assets/images/login-logo.svg'
 import LoginImg from '../../assets/images/login-hero.svg'
 import GoogleIcon from '../../assets/images/google.svg'
 
+import { connect } from 'react-redux'
+import { signInLogin } from "../../actions";
 
-export function Login() {
+export function Login(props) {
   return (
     <Container>
       <Nav>
@@ -25,7 +27,7 @@ export function Login() {
           <img src={LoginImg} alt="" />
         </Hero>
         <Form>
-          <Google>
+          <Google onClick={() => props.signIn()}>
             <img src={GoogleIcon} alt="" />
             Entre com o Google
           </Google>
@@ -34,3 +36,14 @@ export function Login() {
     </Container>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  signIn: () => dispatch(signInLogin()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
+
