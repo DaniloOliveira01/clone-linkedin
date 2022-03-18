@@ -34,7 +34,8 @@ export const ShareBox = styled(CommonCard)`
       border: none;
       display: flex;
       align-items: center;
-      font-weight: 600;
+      font-weight: 400;
+      cursor: pointer;
     }
 
     &:first-child {
@@ -56,6 +57,10 @@ export const ShareBox = styled(CommonCard)`
         border: 1px solid rgba(0,0,0,0.15);
         background-color: #fff;
         text-align: left;
+
+        &:hover {
+          background-color: rgba(0,0,0,0.13);
+        }
       }
     }
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // Styles
@@ -15,6 +16,9 @@ import {
   Work
 } from "./styles";
 
+import { useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
+
 // Images
 import HomeLogo from '../../assets/images/home-logo.svg'
 import SearchSvg from '../../assets/images/search-icon.svg'
@@ -23,13 +27,62 @@ import NavNetwork from '../../assets/images/nav-network.svg'
 import NavJobs from '../../assets/images/nav-jobs.svg'
 import NavMensages from '../../assets/images/nav-messaging.svg'
 import NavNotification from '../../assets/images/nav-notifications.svg'
-import UserSvg from '../../assets/images/user.svg'
 import DownSvg from '../../assets/images/down-icon.svg'
 import NavWork from '../../assets/images/nav-work.svg'
 
-
+// Services 
+import { auth } from '../../services/firebase';
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserName, selectUserPhoto, setUserLoginDetails, setSignOutState } from '../../reducers/User/userSlice';
 
 export function Header() {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const userName = useSelector(selectUserName)
+  const userPhoto = useSelector(selectUserPhoto)
+
+  useEffect(() => {
+    auth.onAuthStateChanged( async (user) => {
+      if (user) {
+        setUser(user);
+        navigate("/home") 
+      };
+    });
+  }, [userName])
+
+  const setUser = (user) => {
+    dispatch(
+      setUserLoginDetails({
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+      })
+    );
+  };
+
+  const handleAuth = () => {
+    if(!userName) {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+      .then((res) => {
+        setUser(res.user);
+      })
+      .catch((err) => {
+        console.log("oi");
+      });
+    } else if (userName) {
+      auth.signOut()
+      .then(() => {
+        dispatch(setSignOutState())
+        navigate("/")
+      }).catch((err) => alert(err.message))
+    }
+  }
+
+
+
   return (
     <Container>
       <Content>
@@ -115,7 +168,7 @@ export function Header() {
             <User>
               <a>
                 <img 
-                src={UserSvg} 
+                src={userPhoto} 
                 />
                 <span>
                   Eu
@@ -125,7 +178,7 @@ export function Header() {
                 </span>
               </a>
 
-              <SignOut>
+              <SignOut onClick={handleAuth}>
                 <a>
                   Sair
                 </a>

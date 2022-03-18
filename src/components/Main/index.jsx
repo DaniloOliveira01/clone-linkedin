@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Article, Container, Description, ShareActor, ShareBox, ShareImg, SocialActions, SocialCounts } from "./styles";
 
@@ -14,15 +15,46 @@ import { FaComment } from 'react-icons/fa'
 import { FaShare } from 'react-icons/fa'
 import { FaPaperPlane } from 'react-icons/fa'
 
+import { useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 
+
+import { auth } from '../../services/firebase';
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserName, selectUserPhoto, setUserLoginDetails } from '../../reducers/User/userSlice'
 
 export function Main() {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const userName = useSelector(selectUserName)
+  const userPhoto = useSelector(selectUserPhoto)
+
+  useEffect(() => {
+    auth.onAuthStateChanged( async (user) => {
+      if (user) {
+        setUser(user);
+        navigate("/home") 
+      };
+    });
+  }, [userName])
+
+  const setUser = (user) => {
+    dispatch(
+      setUserLoginDetails({
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+      })
+    );
+  };
+
   return (
   <Container>
     <ShareBox>
       <div>
         <img 
-        src={UserSvg} 
+        src={userPhoto} 
         alt="" 
         />
         <button>Começar publicação</button>

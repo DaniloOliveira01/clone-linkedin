@@ -33,9 +33,9 @@ export const CardBackground = styled.div`
   margin: -12px -12px 0;
 `;
 
-export const Photo = styled.div`
+export const Photo = styled.img`
   box-shadow: none;
-  background-image: url(${PhotoSvg});
+  // background-image: url(${PhotoSvg});
   width: 72px;
   height: 72px;
   box-sizing: border-box;

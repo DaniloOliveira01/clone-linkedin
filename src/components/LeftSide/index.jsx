@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // Styles
 import { AddPhotoText, ArtCard, CardBackground, CommunityCard, Container, Item, Link, Photo, UserInfo, Widget } from "./styles";
@@ -9,14 +10,47 @@ import PlusIcon from '../../assets/images/plus-icon.svg'
 
 // Import React
 
+import { useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
+
+
+import { auth } from '../../services/firebase';
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserName, selectUserPhoto, setUserLoginDetails } from '../../reducers/User/userSlice'
+
 export function Leftside() {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const userName = useSelector(selectUserName)
+  const userPhoto = useSelector(selectUserPhoto)
+
+  useEffect(() => {
+    auth.onAuthStateChanged( async (user) => {
+      if (user) {
+        setUser(user);
+        navigate("/home") 
+      };
+    });
+  }, [userName])
+
+  const setUser = (user) => {
+    dispatch(
+      setUserLoginDetails({
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+      })
+    );
+  };
+
   return (
     <Container>
       <ArtCard>
         <UserInfo>
           <CardBackground />
           <a>
-            <Photo />
+            <Photo src={userPhoto} />
             <Link>Bem vindo</Link>
           </a>
           <a>
