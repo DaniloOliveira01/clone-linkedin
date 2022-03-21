@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
+
 // Styles
 import { Container, Join, Nav, Section, SignIn, Hero, Form, Google } from "./styles";
 
 // import react 
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +14,6 @@ import LoginImg from '../../assets/images/login-hero.svg'
 import GoogleIcon from '../../assets/images/google.svg'
 
 // Services
-
 import { auth } from '../../services/firebase';
 import { signInWithPopup, GoogleAuthProvider, User } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,7 +31,8 @@ export function Login(props) {
         navigate("/home") 
       };
     });
-  }, [userName])
+  }, 
+  [userName]);
 
   const setUser = (user) => {
     dispatch(
@@ -60,8 +60,8 @@ export function Login(props) {
         dispatch(setSignOutState())
         navigate("/")
       }).catch((err) => alert(err.message))
-    }
-  }
+    };
+  };
 
 
   return (
@@ -89,5 +89,5 @@ export function Login(props) {
       </Section>
     </Container>
   );
-}
+};
 

@@ -9,4 +9,4 @@ export function Router() {
       <Route path='/home' element={<Home />} />
     </Routes>
   );
-}
+};

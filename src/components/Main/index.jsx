@@ -37,7 +37,8 @@ export function Main() {
         navigate("/home") 
       };
     });
-  }, [userName])
+  }, 
+  [userName]);
 
   const setUser = (user) => {
     dispatch(
@@ -165,4 +166,4 @@ export function Main() {
     </div>
   </Container>
   );
-}
+};

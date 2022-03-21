@@ -58,4 +58,4 @@ export function Rightside() {
       </FollowCard>
     </Container>
   );
-}
+};

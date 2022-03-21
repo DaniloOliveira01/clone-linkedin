@@ -50,7 +50,8 @@ export function Header() {
         navigate("/home") 
       };
     });
-  }, [userName])
+  }, 
+  [userName]);
 
   const setUser = (user) => {
     dispatch(
@@ -78,8 +79,8 @@ export function Header() {
         dispatch(setSignOutState())
         navigate("/")
       }).catch((err) => alert(err.message))
-    }
-  }
+    };
+  };
 
 
 
@@ -204,4 +205,4 @@ export function Header() {
       </Content>
     </Container>
   );
-}
+};

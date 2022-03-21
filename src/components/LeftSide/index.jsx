@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
 // Styles
 import { AddPhotoText, ArtCard, CardBackground, CommunityCard, Container, Item, Link, Photo, UserInfo, Widget } from "./styles";
 
@@ -9,11 +10,10 @@ import WidIcon from '../../assets/images/widget-icon.svg'
 import PlusIcon from '../../assets/images/plus-icon.svg'
 
 // Import React
-
 import { useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 
-
+// Services
 import { auth } from '../../services/firebase';
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserName, selectUserPhoto, setUserLoginDetails } from '../../reducers/User/userSlice'
@@ -32,7 +32,8 @@ export function Leftside() {
         navigate("/home") 
       };
     });
-  }, [userName])
+  }, 
+  [userName]);
 
   const setUser = (user) => {
     dispatch(
@@ -116,4 +117,4 @@ export function Leftside() {
       </CommunityCard>
     </Container>
   );
-}
+};
