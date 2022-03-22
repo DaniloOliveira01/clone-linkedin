@@ -1,21 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
 import { Article, Container, Description, ShareActor, ShareBox, ShareImg, SocialActions, SocialCounts } from "./styles";
 
 import UserSvg from '../../assets/images/user.svg'
 import Image from '../../assets/images/image.jpg'
 
-import { FaImage } from 'react-icons/fa'
-import { FaVideo } from 'react-icons/fa'
-import { FaCalendar } from 'react-icons/fa'
-import { FaNewspaper } from 'react-icons/fa'
-import { FaEllipsisH } from 'react-icons/fa'
-import { FaThumbsUp } from 'react-icons/fa'
-import { FaComment } from 'react-icons/fa'
-import { FaShare } from 'react-icons/fa'
-import { FaPaperPlane } from 'react-icons/fa'
+import { PostModal } from "../PostModal";
 
-import { useEffect } from 'react'
+import { 
+  FaImage, 
+  FaVideo, 
+  FaCalendar, 
+  FaNewspaper, 
+  FaEllipsisH, 
+  FaThumbsUp, 
+  FaComment, 
+  FaShare, 
+  FaPaperPlane } from 'react-icons/fa'
+
+import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 
@@ -24,6 +28,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserName, selectUserPhoto, setUserLoginDetails } from '../../reducers/User/userSlice'
 
 export function Main() {
+  const [showModal, setShowModal] = useState("close");
+
+  const HandleClick = (e) => {
+    e.preventDefault();
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+
+    switch (showModal) {
+      case "open":
+        setShowModal("close");
+        break;
+
+      case "close":
+        setShowModal("open");
+        break;
+      default:
+        setShowModal("close");
+        break;
+    }
+  };
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -58,7 +83,7 @@ export function Main() {
         src={userPhoto} 
         alt="" 
         />
-        <button>Começar publicação</button>
+        <button onClick={HandleClick}>Começar publicação</button>
       </div>
 
       <div>
@@ -164,6 +189,8 @@ export function Main() {
         </SocialActions>
       </Article>
     </div>
+
+    <PostModal showModal={showModal} HandleClick={HandleClick} />
   </Container>
   );
 };

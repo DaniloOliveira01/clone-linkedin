@@ -55,10 +55,11 @@ export const ShareBox = styled(CommonCard)`
         border-radius: 35px;
         padding-left: 16px;
         border: 1px solid rgba(0,0,0,0.15);
-        background-color: #fff;
+        background-color: rgba(0,0,0,0.13);
         text-align: left;
 
         &:hover {
+          transition: 0.4s;
           background-color: rgba(0,0,0,0.13);
         }
       }

@@ -52,7 +52,7 @@ export function Leftside() {
           <CardBackground />
           <a>
             <Photo src={userPhoto} />
-            <Link>Bem vindo</Link>
+            <Link>Bem vindo, {userName}</Link>
           </a>
           <a>
             <AddPhotoText>Adicione uma foto</AddPhotoText>
